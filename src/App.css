@@ -1,0 +1,32 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0rem;
+  text-align: center;
+  .container {
+    border: 1px solid black;
+    margin: 0.2rem;
+    padding: 0.2rem;
+
+    .create-card {
+      border: 1px solid grey;
+      margin: 0.2rem;
+      padding: 0.2rem;
+
+      .create-content {
+        border: 0.5px solid gray;
+        margin: 0.2rem;
+        padding: 0.2rem;
+        font: inherit;
+        text-align: center;
+      }
+      .create-actions {
+        border: 0.5px solid gray;
+        margin: 0.2rem;
+        padding: 0.2rem;
+        display: flex;
+        justify-content: space-evenly;
+      }
+    }
+  }
+}
