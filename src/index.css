@@ -1,11 +1,33 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
 }
+
 body {
   margin: 0;
   display: flex;
-  place-items: center;
-  min-width: 320px;
+  justify-content: center;
+  align-items: center;
   min-height: 100vh;
-} 
+  background-color: #f8f8f8;
+}
 
+/* Mobile Styles */
+@media (max-width: 767px) {
+  body {
+    font-size: 14px;
+  }
+}
+
+/* Tablet Styles */
+@media (min-width: 768px) and (max-width: 1023px) {
+  body {
+    font-size: 18px;
+  }
+}
+
+/* Desktop Styles */
+@media (min-width: 1024px) {
+  body {
+    font-size: 20px;
+  }
+}

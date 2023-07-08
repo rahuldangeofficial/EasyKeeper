@@ -1,10 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { PropTypes } from "prop-types";
 import "./Note.css";
 
-function Note({ content, deleteNote, modifyNote, dateCreated, lastModified }) {
+function Note({
+  content,
+  deleteNote,
+  modifyNote,
+  dateCreated,
+  lastModified,
+}) {
   const [isEditing, setIsEditing] = useState(false);
   const [localNoteContent, setLocalNoteContent] = useState(content);
+  const textareaRef = useRef(null);
+
+  useEffect(() => {
+    if (isEditing) {
+      adjustTextareaHeight();
+    }
+  }, [isEditing]);
 
   const handleEdit = () => {
     setIsEditing(true);
@@ -21,15 +34,25 @@ function Note({ content, deleteNote, modifyNote, dateCreated, lastModified }) {
 
   const handleModification = (event) => {
     setLocalNoteContent(event.target.value);
+    adjustTextareaHeight();
+  };
+
+  const adjustTextareaHeight = () => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = "auto";
+      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+    }
   };
 
   return (
     <div className="note-card">
       {isEditing ? (
         <textarea
-          className="note-content"
+          className="note-content textarea-autogrow"
+          ref={textareaRef}
           value={localNoteContent}
           onChange={handleModification}
+          onFocus={adjustTextareaHeight}
         />
       ) : (
         <div className="note-content">{content}</div>

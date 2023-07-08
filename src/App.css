@@ -1,32 +1,64 @@
 #root {
-  max-width: 1280px;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   margin: 0 auto;
-  padding: 0rem;
-  text-align: center;
-  .container {
-    border: 1px solid black;
-    margin: 0.2rem;
-    padding: 0.2rem;
+  padding: 1rem;
+}
 
-    .create-card {
-      border: 1px solid grey;
-      margin: 0.2rem;
-      padding: 0.2rem;
+.container {
+  margin-bottom: 1rem;
+}
 
-      .create-content {
-        border: 0.5px solid gray;
-        margin: 0.2rem;
-        padding: 0.2rem;
-        font: inherit;
-        text-align: center;
-      }
-      .create-actions {
-        border: 0.5px solid gray;
-        margin: 0.2rem;
-        padding: 0.2rem;
-        display: flex;
-        justify-content: space-evenly;
-      }
-    }
+.create-card {
+  border: 1px solid grey;
+  border-radius: 2px;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 400px;
+}
+
+.create-content {
+  width: 100%;
+  font-size: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  font: inherit;
+  margin-bottom: 0.5rem;
+  white-space: pre-wrap;
+  word-break: break-word;
+  resize: none;
+  overflow: hidden;
+}
+
+.create-content.textarea-autogrow {
+  height: auto;
+  min-height: 40px;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
+  border: none;
+  outline: none;
+  overflow: hidden;
+}
+
+/* Mobile Styles */
+@media (max-width: 767px) {
+  .create-card {
+    width: 200px;
+  }
+}
+
+/* Tablet Styles */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .create-card {
+    width: 600px;
+  }
+}
+
+/* Desktop Styles */
+@media (min-width: 1024px) {
+  .create-card {
+    width: 800px;
   }
 }

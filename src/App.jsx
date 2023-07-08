@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./App.css";
 import Note from "./components/Note/Note";
 import { v4 as uuidv4 } from "uuid";
@@ -7,6 +7,7 @@ function App() {
   const [notesList, setNotes] = useState([]);
   const [noteContent, setInputValue] = useState("");
   const [isInitialMount, setIsInitialMount] = useState(true);
+  const textareaRef = useRef(null);
 
   useEffect(() => {
     const storedNotes = localStorage.getItem("notesList");
@@ -37,11 +38,13 @@ function App() {
       const newNote = createNote();
       setNotes((prevNotes) => [...prevNotes, newNote]);
       setInputValue("");
+      adjustTextareaHeightInstantly();
     }
   }
 
   function handleInputChange(event) {
     setInputValue(event.target.value);
+    adjustTextareaHeight();
   }
 
   function deleteNoteById(id) {
@@ -68,6 +71,19 @@ function App() {
     handleCreateNote();
   }
 
+  const adjustTextareaHeight = () => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = "auto";
+      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+    }
+  };
+
+  const adjustTextareaHeightInstantly = () => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = "40px";
+    }
+  };
+
   return (
     <>
       <div className="container">
@@ -77,9 +93,11 @@ function App() {
       <div className="container">
         <form className="create-card" onSubmit={handleSubmit}>
           <textarea
-            className="create-content"
+            className="create-content textarea-autogrow"
+            ref={textareaRef}
             value={noteContent}
             onChange={handleInputChange}
+            onFocus={adjustTextareaHeight}
           />
 
           <div className="create-actions">
