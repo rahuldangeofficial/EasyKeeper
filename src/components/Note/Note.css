@@ -1,28 +1,65 @@
 .note-card {
   border: 1px solid grey;
-  margin: 0.2rem;
-  padding: 0.2rem;
+  border-radius: 2px;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 400px;
+}
 
-  .note-content{
-    border: 0.5px solid grey;
-    margin: 0.2rem;
-    padding: 0.2rem;
-    font: inherit;
-    text-align: center;
+.note-content {
+  width: 100%;
+  font-size: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  font: inherit;
+  margin-bottom: 0.5rem;
+  white-space: pre-wrap;
+  word-break: break-word;
+  resize: none;
+  overflow: hidden;
+}
+
+.note-content.textarea-autogrow {
+  height: auto;
+  min-height: 40px;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
+  border: none;
+  outline: none;
+  overflow: hidden;
+}
+.note-meta-info {
+  font-size: 0.6rem;
+  color: #888;
+}
+
+.note-actions {
+  display: flex;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  padding-top: 0.5rem;
+}
+
+/* Mobile Styles */
+@media (max-width: 767px) {
+  .note-card {
+    width: 200px;
   }
-  .note-meta-info {
-    border: 0.5px solid grey;
-    margin: 0.2rem;
-    padding: 0.2rem;
-    font: inherit;
-    font-size: 0.6rem;
-    text-align: center;
+}
+
+/* Tablet Styles */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .note-card {
+    width: 600px;
   }
-  .note-actions {
-    border: 0.5px solid gray;
-    margin: 0.2rem;
-    padding: 0.2rem;
-    display: flex;
-    justify-content: space-evenly;
+}
+
+/* Desktop Styles */
+@media (min-width: 1024px) {
+  .note-card {
+    width: 800px;
   }
 }
