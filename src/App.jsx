@@ -14,6 +14,7 @@ function App() {
       setNotes(JSON.parse(storedNotes));
     }
   }, []);
+
   useEffect(() => {
     if (isInitialMount) {
       setIsInitialMount(false);
@@ -28,6 +29,7 @@ function App() {
       content: noteContent,
     };
   }
+
   function handleCreateNote() {
     if (noteContent.trim() !== "") {
       const newNote = createNote();
@@ -35,13 +37,16 @@ function App() {
       setInputValue("");
     }
   }
+
   function handleInputChange(event) {
     setInputValue(event.target.value);
   }
+
   function deleteNoteById(id) {
     const newNotes = notesList.filter((obj) => obj.id !== id);
     setNotes(newNotes);
   }
+
   function modifyNoteById(id, newContent) {
     const updatedNotes = notesList.map((note) => {
       if (note.id === id) {
@@ -51,15 +56,18 @@ function App() {
     });
     setNotes(updatedNotes);
   }
+
   function handleSubmit(event) {
     event.preventDefault();
     handleCreateNote();
   }
+
   return (
     <>
       <div className="container">
         <p>EasyKeeper v1.0.0</p>
       </div>
+
       <div className="container">
         <form className="create-card" onSubmit={handleSubmit}>
           <textarea
@@ -67,6 +75,7 @@ function App() {
             value={noteContent}
             onChange={handleInputChange}
           />
+          
           <div className="create-actions">
             <button type="submit" disabled={!noteContent.trim()}>
               Create
@@ -74,6 +83,7 @@ function App() {
           </div>
         </form>
       </div>
+
       <div className="container">
         {notesList.map(({ id, content }) => (
           <Note
