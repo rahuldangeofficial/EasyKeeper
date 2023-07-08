@@ -2,10 +2,10 @@ import { useState } from "react";
 import { PropTypes } from "prop-types";
 import "./Note.css";
 
-function Note({ content, deleteNote, modifyNote }) {
+function Note({ content, deleteNote, modifyNote, dateCreated, lastModified }) {
   const [isEditing, setIsEditing] = useState(false);
   const [localNoteContent, setLocalNoteContent] = useState(content);
-  
+
   const handleEdit = () => {
     setIsEditing(true);
   };
@@ -34,7 +34,8 @@ function Note({ content, deleteNote, modifyNote }) {
       ) : (
         <div className="note-content">{content}</div>
       )}
-
+      <div className="note-meta-info">Created - {dateCreated}</div>
+      <div className="note-meta-info">Modified - {lastModified}</div>
       {isEditing ? (
         <div className="note-actions">
           <button onClick={handleSave}>Save</button>
@@ -54,6 +55,8 @@ Note.propTypes = {
   content: PropTypes.string,
   deleteNote: PropTypes.func,
   modifyNote: PropTypes.func,
+  dateCreated: PropTypes.string,
+  lastModified: PropTypes.string,
 };
 
 export default Note;

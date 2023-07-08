@@ -27,6 +27,8 @@ function App() {
     return {
       id: uuidv4(),
       content: noteContent,
+      dateCreated: new Date().toLocaleString(),
+      lastModified: new Date().toLocaleString(),
     };
   }
 
@@ -50,7 +52,11 @@ function App() {
   function modifyNoteById(id, newContent) {
     const updatedNotes = notesList.map((note) => {
       if (note.id === id) {
-        return { ...note, content: newContent };
+        return {
+          ...note,
+          content: newContent,
+          lastModified: new Date().toLocaleString(),
+        };
       }
       return note;
     });
@@ -75,7 +81,7 @@ function App() {
             value={noteContent}
             onChange={handleInputChange}
           />
-          
+
           <div className="create-actions">
             <button type="submit" disabled={!noteContent.trim()}>
               Create
@@ -85,12 +91,14 @@ function App() {
       </div>
 
       <div className="container">
-        {notesList.map(({ id, content }) => (
+        {notesList.map(({ id, content, dateCreated, lastModified }) => (
           <Note
             key={id}
             deleteNote={() => deleteNoteById(id)}
             modifyNote={(newContent) => modifyNoteById(id, newContent)}
             content={content}
+            dateCreated={dateCreated}
+            lastModified={lastModified}
           />
         ))}
       </div>
