@@ -14,20 +14,20 @@ body {
 /* Mobile Styles */
 @media (max-width: 767px) {
   body {
-    font-size: 14px;
+    font-size: 0.8rem;
   }
 }
 
 /* Tablet Styles */
 @media (min-width: 768px) and (max-width: 1023px) {
   body {
-    font-size: 18px;
+    font-size: 0.8rem;
   }
 }
 
 /* Desktop Styles */
 @media (min-width: 1024px) {
   body {
-    font-size: 20px;
+    font-size: 1rem;
   }
 }

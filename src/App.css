@@ -8,6 +8,20 @@
   margin-bottom: 1rem;
 }
 
+.search-input {
+  border: 1px solid grey;
+  border-radius: 2px;
+  padding: 1rem;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  font-size: 1rem;
+}
+
+.search-input:focus {
+  outline: none;
+}
+
 .create-card {
   border: 1px solid grey;
   border-radius: 2px;
@@ -44,21 +58,24 @@
 
 /* Mobile Styles */
 @media (max-width: 767px) {
-  .create-card {
-    width: 200px;
+  .create-card,
+  .search-input {
+    width: 240px;
   }
 }
 
 /* Tablet Styles */
 @media (min-width: 768px) and (max-width: 1023px) {
-  .create-card {
-    width: 600px;
+  .create-card,
+  .search-input {
+    width: 700px;
   }
 }
 
 /* Desktop Styles */
 @media (min-width: 1024px) {
-  .create-card {
-    width: 800px;
+  .create-card,
+  .search-input {
+    width: 850px;
   }
 }

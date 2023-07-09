@@ -5,7 +5,8 @@ import { v4 as uuidv4 } from "uuid";
 
 function App() {
   const [notesList, setNotes] = useState([]);
-  const [noteContent, setInputValue] = useState("");
+  const [noteContent, setNoteContent] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
   const [isInitialMount, setIsInitialMount] = useState(true);
   const textareaRef = useRef(null);
 
@@ -33,18 +34,22 @@ function App() {
     };
   }
 
+  function handleCreateInputChange(event) {
+    setNoteContent(event.target.value);
+    adjustTextareaHeight();
+  }
+
+  function handleSearchInputChange(event) {
+    setSearchTerm(event.target.value);
+  }
+
   function handleCreateNote() {
     if (noteContent.trim() !== "") {
       const newNote = createNote();
       setNotes((prevNotes) => [...prevNotes, newNote]);
-      setInputValue("");
+      setNoteContent("");
       adjustTextareaHeightInstantly();
     }
-  }
-
-  function handleInputChange(event) {
-    setInputValue(event.target.value);
-    adjustTextareaHeight();
   }
 
   function deleteNoteById(id) {
@@ -87,17 +92,26 @@ function App() {
   return (
     <>
       <div className="container">
-        <p>EasyKeeper v1.0.0</p>
+        <h1>EasyKeeper v1.1.0</h1>
       </div>
-
+      <div className="container">
+        <input
+          className="search-input"
+          type="text"
+          value={searchTerm}
+          onChange={handleSearchInputChange}
+          placeholder="Search"
+        />
+      </div>
       <div className="container">
         <form className="create-card" onSubmit={handleSubmit}>
           <textarea
             className="create-content textarea-autogrow"
             ref={textareaRef}
             value={noteContent}
-            onChange={handleInputChange}
+            onChange={handleCreateInputChange}
             onFocus={adjustTextareaHeight}
+            placeholder="Take a note..."
           />
 
           <div className="create-actions">
@@ -109,16 +123,25 @@ function App() {
       </div>
 
       <div className="container">
-        {notesList.map(({ id, content, dateCreated, lastModified }) => (
-          <Note
-            key={id}
-            deleteNote={() => deleteNoteById(id)}
-            modifyNote={(newContent) => modifyNoteById(id, newContent)}
-            content={content}
-            dateCreated={dateCreated}
-            lastModified={lastModified}
-          />
-        ))}
+        {notesList
+          .filter(
+            (note) =>
+              note.content.toLowerCase().includes(searchTerm.toLowerCase()) ||
+              note.dateCreated
+                .toLowerCase()
+                .includes(searchTerm.toLowerCase()) ||
+              note.lastModified.toLowerCase().includes(searchTerm.toLowerCase())
+          )
+          .map(({ id, content, dateCreated, lastModified }) => (
+            <Note
+              key={id}
+              deleteNote={() => deleteNoteById(id)}
+              modifyNote={(newContent) => modifyNoteById(id, newContent)}
+              content={content}
+              dateCreated={dateCreated}
+              lastModified={lastModified}
+            />
+          ))}
       </div>
     </>
   );

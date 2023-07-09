@@ -46,20 +46,20 @@
 /* Mobile Styles */
 @media (max-width: 767px) {
   .note-card {
-    width: 200px;
+    width: 240px;
   }
 }
 
 /* Tablet Styles */
 @media (min-width: 768px) and (max-width: 1023px) {
   .note-card {
-    width: 600px;
+    width: 700px;
   }
 }
 
 /* Desktop Styles */
 @media (min-width: 1024px) {
   .note-card {
-    width: 800px;
+    width: 850px;
   }
 }
