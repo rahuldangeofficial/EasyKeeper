@@ -1,8 +1,9 @@
+import PropTypes from "prop-types";
 import { useState, useEffect, useRef } from "react";
-import { PropTypes } from "prop-types";
 import "./Note.css";
 
 function Note({
+  id,
   content,
   deleteNote,
   modifyNote,
@@ -25,11 +26,11 @@ function Note({
 
   const handleSave = () => {
     setIsEditing(false);
-    modifyNote(localNoteContent);
+    modifyNote(id, localNoteContent);
   };
 
   const handleDelete = () => {
-    deleteNote();
+    deleteNote(id);
   };
 
   const handleModification = (event) => {
@@ -62,12 +63,16 @@ function Note({
       {isEditing ? (
         <div className="note-actions">
           <button onClick={handleSave}>Save</button>
-          <button onClick={handleDelete}>Delete</button>
+          <button onClick={handleDelete} className="delete-button">
+            Delete
+          </button>
         </div>
       ) : (
         <div className="note-actions">
           <button onClick={handleEdit}>Edit</button>
-          <button onClick={handleDelete}>Delete</button>
+          <button onClick={handleDelete} className="delete-button">
+            Delete
+          </button>
         </div>
       )}
     </div>
@@ -75,6 +80,7 @@ function Note({
 }
 
 Note.propTypes = {
+  id: PropTypes.string,
   content: PropTypes.string,
   deleteNote: PropTypes.func,
   modifyNote: PropTypes.func,
