@@ -211,7 +211,7 @@ function App() {
   return (
     <>
       <div className="container">
-        <h1>EasyKeeper v2.0.0</h1>
+        <h1 className="header">EasyKeeper</h1>
         {user ? (
           <button onClick={handleSignOut}>Sign Out</button>
         ) : (
