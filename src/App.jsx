@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import "./App.css";
 import Note from "./components/Note/Note";
 import { initializeApp } from "firebase/app";
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { getAuth, signInWithRedirect, GoogleAuthProvider } from "firebase/auth";
 import {
   getFirestore,
   collection,
@@ -186,7 +186,7 @@ function App() {
   const handleSignIn = () => {
     const provider = new GoogleAuthProvider();
 
-    signInWithPopup(auth, provider)
+    signInWithRedirect(auth, provider)
       .then((result) => {
         console.log("User signed in:", result.user.uid);
         setUser(result.user);
